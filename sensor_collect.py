@@ -40,7 +40,7 @@ if FilePath.exists() is False:
 	# print("file does not exist")
 	# If not Create the File and add the Headers
 	# Hostname - Location - Date - Time - Temp - Hum - Press - SM1_T - SM1_M- SM2_T - SM2_M
-	with Filepath.open("a") as log:
+	with FilePath.open("a") as log:
 		log.write("Hostname,Location,Date,Time,Temp,Hum,Press,Alt,SM1_T,SM1_M,SM2_T,SM2_M\n")
 
 

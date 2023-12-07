@@ -28,23 +28,24 @@ except:
 # Get Hostname and Location
 Hostname = uname()[1]
 # print(Hostname)
-Location = "BCP_Nootsie"
+Location = "unique_location"
 
 # Create String for File Name
-FileName = "/DATA/environmental/" + str(Hostname) + str("-") + strftime("%Y%m%d") + str(".csv")
+FilePath = Path("~/DATA/environmental/" + str(Hostname) + str("-") + strftime("%Y%m%d") + str(".csv")).expanduser()
 #print(FileName)
 
 # Check if Data file is already Created
-if Path(FileName).exists() is False:
+if FilePath.exists() is False:
+	FilePath.parent.mkdir(parents=True, exist_ok=True)
 	# print("file does not exist")
 	# If not Create the File and add the Headers
 	# Hostname - Location - Date - Time - Temp - Hum - Press - SM1_T - SM1_M- SM2_T - SM2_M
-	with open(FileName, "a") as log:
+	with Filepath.open("a") as log:
 		log.write("Hostname,Location,Date,Time,Temp,Hum,Press,Alt,SM1_T,SM1_M,SM2_T,SM2_M\n")
 
 
 # Collecting and writing data to the CSV
-with open(FileName, "a") as log:
+with Filepath.open("a") as log:
 #	while True:
 		# creating the data variables
 		try:

@@ -45,7 +45,7 @@ if FilePath.exists() is False:
 
 
 # Collecting and writing data to the CSV
-with Filepath.open("a") as log:
+with FilePath.open("a") as log:
 #	while True:
 		# creating the data variables
 		try:

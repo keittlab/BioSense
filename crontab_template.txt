@@ -1,0 +1,26 @@
+@reboot sudo iw wlan0 set power_save off
+# Sound using Andrea
+0 12 * * * ~/BioSense/at-30before-sunrise-tomorrow.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
+0 12 * * * ~/BioSense/at-30before-sunset.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
+
+#Check Sunset Job
+* 14 * * * ~/BioSense/upstream-atqcheck.bash  >> /BioSense/cron_captures.log 
+
+#Record BME and Sensor Data 
+* * * * * /usr/bin/python3 ~/BioSense/sensor_collect.py >> /DATA/logs/sensors.log
+
+
+#Sound using SEEED Respeaker Hat (6-mic/8-channel)
+
+#0 12 * * * ~/BioSense/at-30before-sunrise-tomorrow.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting-`(/bin/date +%Y%m%d)`.log
+#0 12 * * * ~/BioSense/at-30before-sunset.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting-`(/bin/date +%Y%m%d)`.log
+
+##Sound file (wav) transfers
+#* 11 * * * ~/BioSense/stengl-minio-tests/transferwavfiles.bash >> /home/pi/upstream/data/sound-xfer.log
+
+##Sound file (wav)  clean up
+#* 14 1-31/2 * * ~/BioSense/stengl-minio-tests/cleanup-all-transferedwavfiles.bash >> /home/pi/upstream/data/soundfile-cleanup.log
+
+##Sitrep
+#0 12 * * * python3 ~/BioSense/phone_home/DiscordSitrep.py
+

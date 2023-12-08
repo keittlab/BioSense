@@ -4,12 +4,14 @@
 0 12 * * * ~/BioSense/at-30before-sunrise-tomorrow.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
 0 12 * * * ~/BioSense/at-30before-sunset.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
 
-#Check Sunset Job
+# Check Sunset Job
 * 14 * * * ~/BioSense/upstream-atqcheck.bash  >> /BioSense/cron_captures.log 
 
-#Record BME and Sensor Data 
+# Record BME and Sensor Data 
 * * * * * /usr/bin/python3 ~/BioSense/sensor_collect.py >> /DATA/logs/sensors.log
 
+# Keep display updated
+* * * * * python3 ~/BioSense/display.py
 
 #Sound using SEEED Respeaker Hat (6-mic/8-channel)
 

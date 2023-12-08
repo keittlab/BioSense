@@ -160,3 +160,11 @@ You will need to use Stache.utexas to get the information to enter into the .env
 ```
 python3 stengl-miniotest.py
 ```
+
+# Set up Zerotier
+```
+https://www.zerotier.com/download/
+curl -s https://install.zerotier.com | sudo bash
+sudo service zerotier-one restart
+sudo zerotier-cli join <network id>
+```

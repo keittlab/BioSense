@@ -1,6 +1,6 @@
 #!/bin/bash
 SENSORFILES_DIR="/DATA/environmental"
-SOUNDFILES_DIR="/home/pi/upstream/sound"
+SOUNDFILES_DIR="/DATA/sound/new"
 TIMESTAMP=`(date +%Y%m%d)`
 echo "Getting the most recent files from $SENSORFILES_DIR"
 ls -Art $SENSORFILES_DIR|grep csv|tail -n 2 > $SENSORFILES_DIR/../logs/sensor-xfer-temp.log-$TIMESTAMP

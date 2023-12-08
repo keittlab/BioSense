@@ -4,8 +4,8 @@
 0 12 * * * ~/BioSense/at-30before-sunrise-tomorrow.bash "/home/$USER/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
 0 12 * * * ~/BioSense/at-30before-sunset.bash "/home/$USER/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log
 
-# Check Sunset Job
-* 14 * * * ~/BioSense/upstream-atqcheck.bash  >> /BioSense/cron_captures.log 
+## Check Sunset Job
+#* 14 * * * ~/BioSense/upstream-atqcheck.bash  >> /BioSense/cron_captures.log 
 
 # Record BME and Sensor Data 
 * * * * * /usr/bin/python3 ~/BioSense/sensor_collect.py >> /DATA/logs/sensors.log

@@ -12,7 +12,7 @@
 # Remove things from the queue with atrm <atq_job_number>
 
 # This variable can be altered to use any time wanted
-SUNRISE_TIME=`grep $(date --date='tomorrow' +"%m/%d/%Y") /home/pi/upstream/sunrise-sunset-times.txt |awk '{print $2,$1}'`
+SUNRISE_TIME=`grep $(date --date='tomorrow' +"%m/%d/%Y") ~/BioSense/sunrise-sunset-times.txt |awk '{print $2,$1}'`
 ##Debug - remove comment to run immediately
 #SUNRISETIME="now"
 

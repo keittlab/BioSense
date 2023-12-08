@@ -1,3 +1,4 @@
+@reboot python3 ~/BioSense/softshutdown.py &
 @reboot sudo iw wlan0 set power_save off
 # Sound using Andrea
 0 12 * * * ~/BioSense/at-30before-sunrise-tomorrow.bash "~/BioSense/upstream-sound.bash 3600" >> ~/DATA/logs/soundsetting.log

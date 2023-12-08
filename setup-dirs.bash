@@ -10,7 +10,7 @@ mkdir ~/DATA/environmental
 mkdir ~/DATA/logs
 
 echo "Checking Directories in /DATA"
-ls /DATA
+ls ~/DATA
 echo "ALL DONE!"
 
 

@@ -32,11 +32,12 @@ Location = "unique_location"
 
 # Create String for File Name
 FilePath = Path("~/DATA/environmental/" + str(Hostname) + str("-") + strftime("%Y%m%d") + str(".csv")).expanduser()
+# FilePath = Path("/DATA/environmental/" + str(Hostname) + str("-") + strftime("%Y%m%d") + str(".csv"))
 #print(FileName)
 
 # Check if Data file is already Created
 if FilePath.exists() is False:
-	FilePath.parent.mkdir(parents=True, exist_ok=True)
+	# FilePath.parent.mkdir(parents=True, exist_ok=True)
 	# print("file does not exist")
 	# If not Create the File and add the Headers
 	# Hostname - Location - Date - Time - Temp - Hum - Press - SM1_T - SM1_M- SM2_T - SM2_M

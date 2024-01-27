@@ -1,5 +1,5 @@
-# Hook-Deployment
-This is the repository for the Hook Sensor Platform Raspberry Pis. This Repository is used in unison with the Upstream repository https://github.com/jeaimehp/upstream-rpi.git
+# Biosense
+This is a template repository for the BioSense platform, which demonstrates simple recording schedules via Cronjobs of a BME 280 sensor, a USB microphone, and two soil moisture sensors. Recording schedules or attached sensors should be customized by editing the Cronjob and/or sensor_collect.py.
 
 # Set Up:
 Run these commands on a fresh RPi
@@ -29,15 +29,14 @@ sudo raspi-config
 ```
 select "5 Localization Options", then select "L2 Timezone" and select the correct timezone, for Austin select US then Central
 
-# Clone the repositories
-Enter these commands from the home directory
+# Clone the repository
+Enter this command from the home directory
 ```
-git clone https://github.com/jeaimehp/upstream-rpi.git
-git clone https://github.com/keittlab/Hook-Deployment.git
+git clone https://github.com/keittlab/BioSense.git
 ```
 # Run the Setup bash script
 ```
-bash Hook-Deployment/hooksetup.bash
+bash BioSense/hooksetup.bash
 ```
 # Set Up the RTC
 ```
@@ -80,7 +79,7 @@ sudo python raspi-blinka.py
 ```
 # Check Blinka
 ```
-python3 Hook-Deployment/blinkatest.py
+python3 BioSense/blinkatest.py
 ```
 # Checking the i2c devices  
 Solder the AD0 pad on ONE of the Soil moisture sensors to change the i2c address for one of the soil moisture sensors to 0x37
@@ -111,11 +110,11 @@ crontab -e
 Enter the following lines into crontab
 ```
 # Update Display
-* * * * * python3 /home/pi/Hook-Deployment/display.py
+* * * * * python3 /home/pi/BioSense/display.py
 ```
 Enter this line at the top of the file underneath the other reboot commands
 ```
-@reboot python3 /home/pi/Hook-Deployment/softshutdown.py &
+@reboot python3 /home/pi/BioSense/softshutdown.py &
 ```
 
 # Add Environmental Data Collection to Crontab for every 10 min
@@ -125,16 +124,16 @@ crontab -e
 Copy and paste this line into the Crontab
 ```
 #Collect Environmental Data
-*/10 * * * * /usr/bin/python3 /home/pi/Hook-Deployment/sensor_collect.py >> /DATA/logs/sensors.log
+*/10 * * * * /usr/bin/python3 /home/pi/BioSense/sensor_collect.py >> /DATA/logs/sensors.log
 ```
 CTRL X to exit and then save
 # Add the Sensor Data Transfer script for TACC
 ```
-cp /home/pi/Hook-Deployment/transfersensorfiles.bash /home/pi/upstream/stengl-minio-tests/transfersensorfiles.bash
+cp /home/pi/BioSense/transfersensorfiles.bash /home/pi/upstream/stengl-minio-tests/transfersensorfiles.bash
 ```
 # Add the Sensor Data Cleanup script
 ```
-cp /home/pi/Hook-Deployment/cleanup-all-transferedsensorfiles.bash /home/pi/upstream/stengl-minio-tests/cleanup-all-transferedsensorfiles.bash
+cp /home/pi/BioSense/cleanup-all-transferedsensorfiles.bash /home/pi/upstream/stengl-minio-tests/cleanup-all-transferedsensorfiles.bash
 ``` 
 # Add the File Transfer and Clean up to Crontab
 ```
@@ -150,18 +149,9 @@ Copy and Paste these lines into the Crontab
 ```
 CTRL X to exit and then save
 
-# Setting Up Minio client
-```
-cd upstream-rpi/stengl-minio-tests/
-bash minio-clientsetup.bash
-nano .env
-```
-You will need to use Stache.utexas to get the information to enter into the .env file. Once the information is copied, use CTRL+X to exit and save. Enter this command to test
-```
-python3 stengl-miniotest.py
-```
+# Optional Networking and/or Remote Maintenace
 
-# Set up Zerotier
+To set up a Zerotier VPN that allows us to SSH into devices with dynamic IPs for remote administration without needing to set up port forwarding on the remote network, create a Zerotier account and installation using a local device, then run the following commands to install it on the remote BioSense node
 ```
 https://www.zerotier.com/download/
 curl -s https://install.zerotier.com | sudo bash

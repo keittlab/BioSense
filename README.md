@@ -1,5 +1,5 @@
 # Biosense
-This is a template repository for the BioSense platform, which demonstrates simple recording schedules via Cronjobs of a BME 280 sensor, a USB microphone, and two soil moisture sensors. Recording schedules or attached sensors should be customized by editing the Cronjob and/or sensor_collect.py.
+This is a template repository for the BioSense platform, which demonstrates simple recording schedules via Cronjobs of a BME 280 sensor, a USB microphone, and two soil moisture sensors. Recording schedules or different sets of attached sensors should be customized by editing the Cronjob and/or sensor_collect.py.
 
 # Set Up:
 Run these commands on a fresh RPi

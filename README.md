@@ -36,7 +36,7 @@ git clone https://github.com/keittlab/BioSense.git
 ```
 # Run the Setup bash script
 ```
-bash BioSense/hooksetup.bash
+bash /home/pi/BioSense/hooksetup.bash
 ```
 # Set Up the RTC
 ```
@@ -79,7 +79,7 @@ sudo python raspi-blinka.py
 ```
 # Check Blinka
 ```
-python3 BioSense/blinkatest.py
+python3 ~/BioSense/blinkatest.py
 ```
 # Checking the i2c devices  
 Solder the AD0 pad on ONE of the Soil moisture sensors to change the i2c address for one of the soil moisture sensors to 0x37
@@ -94,11 +94,11 @@ Should see this output
 The BME280 address should be 0x77, The Soil Moisture sensors should be 0x36 and 0x37, the RTC should be 0xUU in cell 0x68, the Display should be 0x3c
 # Check that the Microphone is Recording
 ```
-./upstream-rpi/upstream-sound.bash
+/home/pi/BioSense/upstream-sound.bash
 ```
-Wait for the recording to finish and check the sound directory in /upstream-rpi to see if there is a recording
+Wait for the recording to finish and check the sound directory in ~/BioSense to see if there is a recording
 ```
-cd upstream-rpi/sound/
+cd /home/pi/BioSense/sound/
 ls
 ```
 There should be a new recoring with the pi's hostname in the directory 
@@ -124,29 +124,16 @@ crontab -e
 Copy and paste this line into the Crontab
 ```
 #Collect Environmental Data
-*/10 * * * * /usr/bin/python3 /home/pi/BioSense/sensor_collect.py >> /DATA/logs/sensors.log
+*/10 * * * * /usr/bin/python3 /home/pi/BioSense/sensor_collect.py >> /home/pi/DATA/logs/sensors.log
 ```
 CTRL X to exit and then save
-# Add the Sensor Data Transfer script for TACC
-```
-cp /home/pi/BioSense/transfersensorfiles.bash /home/pi/upstream/stengl-minio-tests/transfersensorfiles.bash
-```
-# Add the Sensor Data Cleanup script
-```
-cp /home/pi/BioSense/cleanup-all-transferedsensorfiles.bash /home/pi/upstream/stengl-minio-tests/cleanup-all-transferedsensorfiles.bash
-``` 
-# Add the File Transfer and Clean up to Crontab
+
 ```
 crontab -e
 ```
 Copy and Paste these lines into the Crontab
 ```
-#Sensor file (csv) transfers
-* 12 * * * /home/pi/upstream/stengl-minio-tests/transfersensorfiles.bash >> /DATA/logs/sound-xfer.log
 
-#Sensor file (csv)  clean up
-* 13 1-31/2 * * /home/pi/upstream/stengl-minio-tests/cleanup-all-transferedsensorfiles.bash >> /DATA/logs/soundfile-cleanup.log
-```
 CTRL X to exit and then save
 
 # Optional Networking and/or Remote Maintenace

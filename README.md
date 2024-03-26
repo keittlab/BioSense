@@ -117,15 +117,20 @@ Enter this line at the top of the file underneath the other reboot commands
 @reboot python3 /home/pi/BioSense/softshutdown.py &
 ```
 
-# Add Environmental Data Collection to Crontab for every 10 min
+# Add Environmental and Acoustic Data Collection to Crontab 
 ```
 crontab -e
 ```
 Copy and paste this line into the Crontab
 ```
-#Collect Environmental Data
+#Collect Environmental Data every 10 minutes
 */10 * * * * /usr/bin/python3 /home/pi/BioSense/sensor_collect.py >> /home/pi/DATA/logs/sensors.log
 ```
+
+#Collect Acoustic Data at sunrise and sunset
+45 7 * * * /home/pi/BioSense/upstream-sound.bash
+35 19 * * * /home/pi/BioSense/upstream-sound.bash
+
 CTRL X to exit and then save
 
 ```
@@ -135,6 +140,10 @@ Copy and Paste these lines into the Crontab
 ```
 
 CTRL X to exit and then save
+
+
+ sudo arecord -D hw:2,0 -f cd -d 3600 /media/egret/22b60715-a60f-4b6d-9cf6-8c624228142c/$HOSTNAME-`(date +%s)>35 19 * * * sudo arecord -D hw:2,0 -f cd -d 3600 /media/egret/22b60715-a60f-4b6d-9cf6-8c624228142c/$HOSTNAME-`(date +%s>
+
 
 # Optional Networking and/or Remote Maintenace
 

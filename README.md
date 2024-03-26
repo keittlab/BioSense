@@ -36,7 +36,7 @@ git clone https://github.com/keittlab/BioSense.git
 ```
 # Run the Setup bash script
 ```
-bash /home/$USER/BioSense/hooksetup.bash
+bash /home/$USER/BioSense/setup.bash
 ```
 # Set Up the RTC
 ```

@@ -96,9 +96,9 @@ The BME280 address should be 0x77, The Soil Moisture sensors should be 0x36 and 
 ```
 /home/$USER/BioSense/upstream-sound.bash
 ```
-Wait for the recording to finish and check the sound directory in ~/BioSense to see if there is a recording
+Wait for the recording to finish and check the sound directory  to see if there is a recording
 ```
-cd /home/$USER/BioSense/sound/
+cd /home/$USER/DATA/sound/
 ls
 ```
 There should be a new recoring with the pi's hostname in the directory 
@@ -124,10 +124,10 @@ crontab -e
 Copy and paste these lines into the Crontab
 ```
 #Collect Environmental Data every 10 minutes
-*/10 * * * * /usr/bin/python3 /home/pi/BioSense/sensor_collect.py >> /home/pi/DATA/logs/sensors.log
+*/10 * * * * /usr/bin/python3 /home/$USER/BioSense/sensor_collect.py >> /home/$USER/DATA/logs/sensors.log
 #Collect Acoustic Data at sunrise and sunset for 1800 seconds (30 minutes)
-45 7 * * * /home/pi/BioSense/upstream-sound.bash 1800
-35 19 * * * /home/pi/BioSense/upstream-sound.bash 1800
+45 7 * * * /home/$USER/BioSense/upstream-sound.bash 1800
+35 19 * * * /home/$USER/BioSense/upstream-sound.bash 1800
 ```
 CTRL X to exit and then save
 

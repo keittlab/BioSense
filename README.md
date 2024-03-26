@@ -131,18 +131,6 @@ Copy and paste these lines into the Crontab
 ```
 CTRL X to exit and then save
 
-```
-crontab -e
-```
-Copy and Paste these lines into the Crontab
-```
-
-CTRL X to exit and then save
-
-
- sudo arecord -D hw:2,0 -f cd -d 3600 /media/egret/22b60715-a60f-4b6d-9cf6-8c624228142c/$HOSTNAME-`(date +%s)>35 19 * * * sudo arecord -D hw:2,0 -f cd -d 3600 /media/egret/22b60715-a60f-4b6d-9cf6-8c624228142c/$HOSTNAME-`(date +%s>
-
-
 # Optional Networking and/or Remote Maintenace
 
 To set up a Zerotier VPN that allows us to SSH into devices with dynamic IPs for remote administration without needing to set up port forwarding on the remote network, create a Zerotier account and installation using a local device, then run the following commands to install it on the remote BioSense node

@@ -1,3 +1,5 @@
+# Notice: This repo contains various scripts written by students working on the sensing project. It is not intended to be a finished product or a complete solution. The code has not been audited for security or otherwise peer reviewed. It is provided as-is and not endorsed by the Keitt Lab. We will release software packages supporting this project when they are fully documented and vetted. If you would like to read about the hardware platform, please visit https://doi.org/10.1016/j.ohx.2024.e00584
+
 # Biosense
 This is a template repository for the BioSense platform, which demonstrates simple recording schedules via Cronjobs of a BME 280 sensor, a USB microphone, and two soil moisture sensors. Recording schedules or different sets of attached sensors should be customized by editing the Cronjob and/or sensor_collect.py.
 
